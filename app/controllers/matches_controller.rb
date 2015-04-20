@@ -31,26 +31,6 @@ class MatchesController < ApplicationController
       @matches = @profile.matches.active.not_ignored(@profile).not_played.paginate :page => params[:page], :per_page => per_page
     end
 
-    #if params[:type]
-    #  if params[:type] == "not_played"
-    #    @title = "Nierozegrane"
-    #    @matches = @profile.matches.active.not_ignored(@profile).not_played.paginate :page => params[:page], :per_page => per_page
-    #  else
-    #    if params[:type] == "played"
-    #      @title = "Rozegrane"
-    #      @matches = @profile.matches.active.not_ignored(@profile).played.paginate :page => params[:page], :per_page => per_page
-    #    else
-    #      @title = "Ignorowane"
-    #      @matches = @profile.matches.active.ignored(@profile).paginate :page => params[:page], :per_page => per_page
-    #    end
-    #  end
-      #@ignored = @matches.ignored(player)
-      #@played = @matches.not_ignored(player).played
-      #@not_played = @matches.not_ignored(player).not_played
-    #else
-    #  @title = "Nierozegrane"
-    #  @matches = @profile.matches.active.not_ignored(@profile).not_played.paginate :page => params[:page], :per_page => per_page
-    #end
   end
 
   def show
