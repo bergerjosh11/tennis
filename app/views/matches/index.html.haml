@@ -1,0 +1,20 @@
+= render :partial => "menu"
+
+.post
+  %h2.title= @title
+  %p
+  .entry
+    %table.bordered
+      %tr
+        %th Przeciwnik
+        %th
+      - @matches.each do |m|
+        %tr
+          %td
+            = m.opponent(@profile).nick
+          %td
+            = link_to "Więcej", match_path(m)
+    %br
+    = will_paginate @matches
+
+

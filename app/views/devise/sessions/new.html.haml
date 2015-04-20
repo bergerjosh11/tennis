@@ -1,0 +1,25 @@
+.post
+  %h2.title Login
+  %p
+  .entry
+    = form_for(resource_name, resource, :url => session_path(resource_name)) do |f|
+      %table
+        %tr
+          %th
+            E-mail:
+          %td
+            = f.text_field :email
+        %tr
+          %th
+            password:
+          %td
+            = f.password_field :password
+        - if devise_mapping.rememberable?
+          %tr
+            %td
+            %td
+              = f.check_box :remember_me
+              Remember me
+        %tr
+          %td
+          %td= f.submit "Login"

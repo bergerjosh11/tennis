@@ -1,0 +1,8 @@
+- content_for :extra do
+  %li
+    %h2 Matches
+    %ul
+      %li= link_to "Unmatched", matches_path + "?type=not_played"
+      %li= link_to "Played", matches_path + "?type=played"
+      %li= link_to "Ignored", matches_path + "?type=ignored"
+      %li= link_to "Cancelled", matches_path + "?type=cancelled"

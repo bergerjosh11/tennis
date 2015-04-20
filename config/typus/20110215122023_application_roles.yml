@@ -1,0 +1,11 @@
+# Typus Roles Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+admin:
+  Match: create, read, update, delete
+  MatchRequest: create, read, update, delete
+  Message: create, read, update, delete
+  Profile: create, read, update, delete
+  Rate: create, read, update, delete
+  User: create, read, update, delete

@@ -1,0 +1,64 @@
+# Typus Models Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+Match:
+  fields:
+    default: owner_id, first_player_id, second_player_id, winner_id, was_played, info_provided, info_denied, why_denied, when, where, score, first_players_description, second_players_description, first_player_ignores, second_player_ignores, tournament_match, tournament_phase, is_rated_by_first_player, is_rated_by_second_player, first_player, second_player, winner, owner
+    form: owner_id, first_player_id, second_player_id, winner_id, was_played, info_provided, info_denied, why_denied, when, where, score, first_players_description, second_players_description, first_player_ignores, second_player_ignores, tournament_match, tournament_phase, is_rated_by_first_player, is_rated_by_second_player, first_player, second_player, winner, owner
+  order_by: 
+  relationships: first_player, messages, owner, rates, second_player, winner
+  filters: created_at
+  search: 
+  application: tenisowo
+
+MatchRequest:
+  fields:
+    default: owner_id, second_player_id, cancelled, denied, why_denied, description, second_player, owner, accepted, match, match_id
+    form: owner_id, second_player_id, cancelled, denied, why_denied, description, second_player, owner, accepted, match, match_id
+  order_by: 
+  relationships: messages, owner, second_player
+  filters: created_at
+  search: 
+  application: tenisowo
+
+Message:
+  fields:
+    default: content, read, author_id, addressee_id, match_id, match_request_id, match_request, author, addressee, match
+    form: content, read, author_id, addressee_id, match_id, match_request_id, match_request, author, addressee, match
+  order_by: 
+  relationships: addressee, author, match, match_request
+  filters: created_at
+  search: 
+  application: tenisowo
+
+Profile:
+  fields:
+    default: nick, first_name, last_name, city, state, ntrp, hide_name, user_id, user, email, active
+    form: nick, first_name, last_name, city, state, ntrp, hide_name, user_id, user, email, active
+  order_by: 
+  relationships: given_rates, matches_as_first_player, matches_as_second_player, other_match_requests, owned_match_requests, owned_matches, owned_rates, received_messages, sent_messages, user, winned_matches
+  filters: created_at
+  search: 
+  application: tenisowo
+
+Rate:
+  fields:
+    default: rate_value, description, who_gave_id, owner_id, match_id, who_gave, match, owner
+    form: rate_value, description, who_gave_id, owner_id, match_id, who_gave, match, owner
+  order_by: 
+  relationships: match, owner, who_gave
+  filters: created_at
+  search: 
+  application: tenisowo
+
+User:
+  fields:
+    default: email, remember_token
+    form: email, remember_token
+  order_by: 
+  relationships: profile
+  filters: created_at
+  search: 
+  application: tenisowo
+

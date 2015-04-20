@@ -1,0 +1,97 @@
+.space_bottom td {
+	padding-bottom: 1em;
+}
+
+.space_bottom th {
+	padding-bottom: 1em;
+}
+
+.push {
+	height: 66px;
+}
+
+.wide {
+	width: 100%;
+	height: 100px;
+}
+
+.centered {
+	text-align: center;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+div.scroll {
+	height: 200px;
+	width: 100%;
+	overflow: auto;
+	border: 1px solid #666;
+	padding: 8px;
+}
+
+div.little_scroll {
+	height: 150px;
+	width: 100%;
+	overflow: auto;
+	border: 1px solid #666;
+	padding: 8px;
+}
+
+
+.notice {
+	border: 1px solid #CC0000;
+	padding: 1em;
+	margin-bottom: 5px;
+	background: #f8dbdb;
+	color: #CC0000;
+}
+
+.notice p {
+	padding: 0;
+	margin: 0;
+}
+
+.in_notice {
+	color: #CC0000;
+}
+
+.clear {
+	clear: both;
+}
+
+select {
+	border: 1px solid #DEDEDE;
+	background: #FFFFFF;
+	font: normal 13px Arial, Helvetica, sans-serif;
+	color: #5D781D;
+}
+
+input {
+	border: 1px solid #DEDEDE;
+	background: #FFFFFF;
+	font: normal 13px Arial, Helvetica, sans-serif;
+	color: #5D781D;
+}
+
+table.bordered {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+table.bordered th {
+	padding: 2px;
+	border: 1px solid #DEDEDE
+}
+
+table.bordered td {
+	padding: 2px;
+	border: 1px solid #DEDEDE
+	
+}
+
+input.short {
+	width: 170px;
+}

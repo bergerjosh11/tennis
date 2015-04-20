@@ -1,0 +1,63 @@
+.post
+  = render :partial => "players", :locals => {:match => @match}
+  %p
+  .entry
+    - if @match.info_provided
+      %h3 Dane wprowadzone przez drugiego gracza:
+      %br
+      %table.bordered
+        %tr
+          %th 
+            Zwycięzca:
+          %td
+            - if @match.winner_id == -1
+              Brak zwycięzcy
+            - else
+              = @match.winner.nick
+        %tr
+          %th
+            Wynik:
+          %td
+            = @match.score
+        %tr
+          %th
+            Data rozegrania meczu:
+          %td
+            = @match.when
+        %tr
+          %th
+            Miejsce rozegrania meczu:
+          %td
+            = @match.where
+        %tr
+          %th
+            Opis pierwszego gracza:
+          %td
+            - if @match.first_players_description
+              = @match.first_players_description
+            - else
+              = ""
+      %p
+      %h3.centered
+        = link_to "Akceptacja", :action => 'edit_accept'
+        |
+        = link_to "Odrzucenie", :action => 'edit_deny'
+    
+    - else
+      - if @match.info_denied
+        %h3 Odrzuciłeś podane przez drugiego gracza dane. Musisz poczekać na ich ponowne wprowadzenie.
+      - else
+        %h3 Musisz poczekać na wprowadzenie danych przez drugiego gracza.
+
+    
+
+= render :partial => "messages", :locals => {:messages => @messages, :match => @match}
+
+= render :partial => "rate", :locals => {:match => @match, :rate => @rate, :is_rated => @is_rated}
+
+%h3= link_to "Dodaj mecz do ignorowanych", {:action => 'ignore'}
+
+= render :partial => "menu"
+
+
+

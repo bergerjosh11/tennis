@@ -1,0 +1,16 @@
+.post
+  %h2.title Messeges
+  %p
+  .entry
+    .scroll
+      - messages.each do |m|
+        %b
+          = m.content
+        %br
+        %b
+          = m.author.nick + ","
+        = m.created_at.to_time
+        %hr
+    %p
+    %h3
+      =link_to "New Messege", new_match_request_message_path(match_request)

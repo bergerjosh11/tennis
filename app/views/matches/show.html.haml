@@ -1,0 +1,53 @@
+.post
+  = render :partial => "players", :locals => {:match => @match}
+  %p
+  .entry
+    %p
+      %table.bordered
+        %tr
+          %th 
+            Zwycięzca:
+          %td
+            - if @match.winner_id == -1
+              Brak zwycięzcy
+            - else
+              = @match.winner.nick
+        %tr
+          %th
+            Wynik:
+          %td
+            = @match.score
+        %tr
+          %th
+            Data:
+          %td
+            = @match.when
+        %tr
+          %th
+            Miejsce:
+          %td
+            = @match.where
+        %tr
+          %th
+            Opis pierwszego gracza:
+          %td
+            - if @match.first_players_description
+              = @match.first_players_description
+            - else
+              = ""
+        %tr
+          %th
+            Opis drugiego gracza:
+          %td
+            - if @match.second_players_description
+              = @match.second_players_description
+            - else
+              = ""
+              
+= render :partial => "messages", :locals => {:messages => @messages, :match => @match}
+
+= render :partial => "rate", :locals => {:match => @match, :rate => @rate, :is_rated => @is_rated}
+
+= render :partial => "menu"
+
+

@@ -1,0 +1,31 @@
+input.error {
+    background: #f8dbdb;
+}
+
+
+form table td {
+	padding-top: 1px;
+}
+
+.field_error_msg {
+	color: #CC0000;
+}
+
+.fields_error_msg {
+	border: 1px solid #CC0000;
+	padding: 1em;
+	background: #f8dbdb;
+	color: #CC0000;
+}
+
+.errors_list {
+	border: 1px solid #CC0000;
+	background: #f8dbdb;
+	color: #CC0000;
+	padding: 1em;
+	list-style-type: none;
+}
+
+.errors_list li {
+	font-weight: bold;
+}

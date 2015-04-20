@@ -1,0 +1,48 @@
+- if @match_request.denied
+  .notice
+    %p.bold
+      Offer rejected, reason:
+    %p= @match_request.why_denied
+
+- if @match_request.cancelled
+  .notice
+    %p.bold Offer cancelled.
+
+
+- if @match_request.accepted
+  .notice
+    %p.bold
+      Offer accepted.
+    %p
+      New match has been created.
+      = link_to "View.", match_path(@match_request.match)
+
+.post
+  %h2.title
+    - if @is_owner
+      Dla:
+      =link_to @match_request.second_player.nick, player_path(@match_request.second_player)
+    - else
+      Od:
+      =link_to @match_request.owner.nick, player_path(@match_request.owner)
+  %p
+  .entry
+    .little_scroll
+      = @match_request.description
+
+    - if @match_request.is_active and !@is_owner
+      %p
+      %h3.centered
+        = link_to "Accept", matches_path(:id => @match_request.id), :method => :post
+        |
+        = link_to "Reject", :action => "edit_deny"
+
+
+= render :partial => "messages", :locals => {:messages => @messages, :match_request => @match_request}
+
+
+- if @is_owner and !@match_request.accepted and !@match_request.denied and !@match_request.cancelled
+  %h3
+    = link_to "Cancel Offer", {:action => "cancel"}, :confirm => "Are you sure?"
+
+= render :partial => "menu"

@@ -1,0 +1,35 @@
+<script src="/javascripts/form_validation/sign_up.js" type="text/javascript"></script>
+<script src="/javascripts/form_validation/form_validation.js" type="text/javascript"></script>
+
+.post
+  %h2.title Register
+  %span#form_error
+  %p
+  .entry
+    = form_for(resource_name, resource, :url => registration_path(resource_name), :html => {:class => "registration_form"}) do |f|
+      = f.error_messages
+      %table
+        %tr
+          %th
+            E-mail:
+          %td
+            = f.text_field :email
+          %td
+            %span.field_error_msg#user_email_error
+        %tr
+          %th
+            Password:
+          %td
+            = f.password_field :password
+          %td
+            %span.field_error_msg#user_password_error
+        %tr
+          %th
+            Confirm password:
+          %td
+            = f.password_field :password_confirmation
+          %td
+            %span.field_error_msg#user_password_confirmation_error
+        %tr
+          %td
+          %td= f.submit "Register"

@@ -1,0 +1,14 @@
+.post
+  %h2.title Akceptacja wprowadzonych wyników
+  .entry
+    %p
+      - form_for @match, :url => {:action => "accept"} do |f|
+        %table
+          %tr
+            %th Twój opis meczu
+            %td
+              = f.text_area :second_players_description
+          %tr
+            %td
+            %td
+              =f.submit "OK"

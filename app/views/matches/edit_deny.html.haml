@@ -1,0 +1,17 @@
+= render :partial => "shared/object_errors", :locals => {:object => @match}
+
+
+.post
+  %h2.title Odrzucenie wprowadzonych wyników
+  .entry
+    %p
+      - form_for @match, :url => {:action => "deny"} do |f|
+        %table
+          %tr
+            %th Powód:
+            %td
+              = f.text_area :why_denied
+          %tr
+            %td
+            %td
+              =f.submit "OK"

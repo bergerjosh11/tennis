@@ -1,0 +1,53 @@
+.post
+  %h2.title Other Players
+  %p
+  .entry
+    %table.bordered
+      %tr
+        %th Nick
+        %th State
+        %th City
+        %th NTRP
+        %th
+      - @players.each do |player|
+        %tr
+          %td= player.nick
+          %td= player.state
+          %td= player.city
+          %td= player.ntrp
+          %td= link_to "more", player_path(player)
+    %br
+    = will_paginate @match_requests
+- content_for :extra do
+  %li
+    #search
+      %h2 Search for players
+      = form_for @search, :url => players_path, :html => {:method => :get} do |f|
+        %table
+          %tr
+            %td
+              Name:
+            %td
+              =f.text_field :nick_contains, :class => "short"
+          %tr
+            %td
+              City:
+            %td
+              = f.text_field :city_contains, :class => "short"
+          %tr
+            %td
+              State:
+            %td
+              = f.text_field :state_contains, :class => "short"
+          %tr
+            %td NTRP:
+            %td
+              = f.select :ntrp_gteq, [[1.0, 1.0], [1.5, 1.5], [2.0, 2.0], [2.5, 2.5], [3.0, 3.0], [3.5, 3.5], [4.0, 4.0], [4.5, 4.5], [5.0, 5.0], [5.5, 5.5], [6.0, 6.0], [6.5, 6.5], [7.0, 7.0]], :selected => 1.0
+              = "-"
+              = f.select :ntrp_lteq, [[1.0, 1.0], [1.5, 1.5], [2.0, 2.0], [2.5, 2.5], [3.0, 3.0], [3.5, 3.5], [4.0, 4.0], [4.5, 4.5], [5.0, 5.0], [5.5, 5.5], [6.0, 6.0], [6.5, 6.5], [7.0, 7.0]], :selected => 7.0
+          %tr
+            %td
+            %td
+              = f.submit :Search
+    .clear
+

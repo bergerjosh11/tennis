@@ -1,0 +1,54 @@
+- if @match.info_denied
+  .notice
+    %p.bold
+      Odrzucono wprowadzone dane. Powód:
+    %p= @match.why_denied
+
+.post
+  = render :partial => "players", :locals => {:match => @match}
+  %p
+  .entry
+    - form_for @match do |f|
+      %table
+        %tr
+          %th 
+            Wybierz zwycięzcę:
+          %td
+            = f.select :winner_id, [[@match.first_player.nick, @match.first_player.id], [@match.second_player.nick, @match.second_player.id], ["Brak zwycięzcy", -1]]
+        %tr
+          %th
+            Podaj wynik:
+          %td
+            = f.text_field :score
+        %tr
+          %th
+            Data rozegrania meczu:
+          %td
+            = f.date_select :when, :use_month_numbers => true
+        %tr
+          %th
+            Miejsce rozegrania meczu:
+          %td
+            = f.text_field :where
+        %tr
+          %th
+            Twój opis meczu:
+          %td
+            = f.text_area :first_players_description, :class => "wide"
+        %tr
+          %td
+          %td
+            - if !@match.info_provided
+              = f.submit "OK"
+            - else
+              %p Wprowadzone dane oczekują na akceptację drugiego gracza
+
+
+
+= render :partial => "messages", :locals => {:messages => @messages, :match => @match}
+
+= render :partial => "rate", :locals => {:match => @match, :rate => @rate, :is_rated => @is_rated}
+
+%h3= link_to "Dodaj mecz do ignorowanych", {:action => 'ignore'}
+
+= render :partial => "menu"    

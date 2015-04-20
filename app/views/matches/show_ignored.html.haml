@@ -1,0 +1,14 @@
+.post
+  = render :partial => "players", :locals => {:match => @match}
+  %p
+  .entry
+    %p
+      %h3 
+        Mecz jest ignorowany.
+        =link_to "Przestań ignorować", :action => 'stop_ignoring'
+
+
+= render :partial => "messages", :locals => {:messages => @messages, :match => @match}
+= render :partial => "rate", :locals => {:match => @match, :rate => @rate, :is_rated => @is_rated}
+          
+= render :partial => "menu"

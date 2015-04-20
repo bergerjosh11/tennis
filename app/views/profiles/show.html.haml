@@ -1,0 +1,84 @@
+//<script src="/javascripts/form_validation/edit_profile.js" type="text/javascript"></script>
+//<script src="/javascripts/form_validation/form_validation.js" type="text/javascript"></script>
+
+
+= render :partial => "shared/object_errors", :locals => {:object => @profile}
+
+- form_for @profile do |f|
+  .post
+    %h2.title Nick
+    %p
+    .entry
+      %table
+        %tr
+          %td= f.text_field :nick
+          %td= f.submit "Save"
+          %td
+            %span.field_error_msg#profile_nick_error
+
+  .post
+    %h2.title data
+    %p
+    .entry
+      %table
+        %tr
+          %th
+            name:
+          %td
+            = f.text_field :first_name
+          %td
+            %span.field_error_msg#profile_first_name_error
+        %tr
+          %th
+            Last Name:
+          %td
+            = f.text_field :last_name
+          %td
+            %span.field_error_msg#profile_last_name_error
+        %tr
+          %th
+            City:
+          %td
+            = f.text_field :city
+          %td
+            %span.field_error_msg#profile_city_error
+        %tr
+          %th
+            State:
+          %td
+            = f.text_field :state
+          %td
+            %span.field_error_msg#profile_state_error
+        %tr
+          %th
+            Ntrp:
+          %td
+            = f.select :ntrp, [[1.0, 1.0], [1.5, 1.5], [2.0, 2.0], [2.5, 2.5], [3.0, 3.0], [3.5, 3.5], [4.0, 4.0], [4.5, 4.5], [5.0, 5.0], [5.5, 5.5], [6.0, 6.0], [6.5, 6.5], [7.0, 7.0]]
+        %tr
+          %td
+          %td
+            = f.submit "Save"
+.post
+  %h2.title Email and Password
+  %p
+    .entry
+      - form_for @profile.user, :url => registration_path(@profile.user), :html => { :method => :put } do |f|
+        %table
+          %tr.space_bottom
+            %th Email:
+            %td= f.text_field :email, :value => @profile.user.email
+          %tr
+            %th New Password:
+            %td= f.password_field :password
+            %td (Leave blank for nul change)
+          %tr.space_bottom
+            %th Confirm Password:
+            %td= f.password_field :password_confirmation
+          %tr
+            %th current password:
+            %td= f.password_field :current_password
+          %tr
+            %td
+            %td= f.submit "OK"
+
+%h3= link_to "Delete account", registration_path(@profile.user), :confirm => "Are you sure you want to delete your account?", :method => :delete

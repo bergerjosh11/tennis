@@ -1,0 +1,29 @@
+-if !is_rated
+  .post
+    %h2.title Oceń przeciwnika
+    %p
+    .entry
+      - form_for [match, rate] do |f|
+        %table
+          %tr
+            %th Twoja ocena:
+            %td
+              Pozytywna
+              = f.radio_button :rate_value, 1, :checked => true
+            %td
+              Neutralna
+              = f.radio_button :rate_value, 2
+            %td
+              Negatywna
+              = f.radio_button :rate_value, 3
+          %tr
+            %th Uzasadnienie:
+            %td{:colspan => 3}
+              = f.text_area :description, :class => "wide"
+          %tr
+            %td
+            %td{:colspan => 3}
+              = f.submit "OK"
+-else
+  %h3 Przeciwnik został już oceniony
+  %p

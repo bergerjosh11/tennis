@@ -1,0 +1,8 @@
+- content_for :extra do
+  %li
+    %h2 Latest Offers
+    %ul
+      %li= link_to "Recieved", match_requests_path + "?type=received"
+      %li= link_to "Reviewing", match_requests_path + "?type=sent"
+      %li= link_to "Accepted", match_requests_path + "?type=accepted"
+      %li= link_to "Rejected", match_requests_path + "?type=denied"

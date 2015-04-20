@@ -1,0 +1,15 @@
+= render :partial => "shared/object_errors", :locals => {:object => @message}
+
+.post
+  %h2.title New Message
+  .entry
+    %p
+      - form_for [@object, @message] do |f|
+        %table
+          %tr
+            %td
+              = f.text_area :content
+          %tr
+            %td
+              =f.submit "OK"
+

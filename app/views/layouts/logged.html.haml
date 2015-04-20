@@ -1,0 +1,89 @@
+!!! Strict
+/
+  Design by Free CSS Templates
+  http://www.freecsstemplates.org
+  Released for free under a Creative Commons Attribution 2.5 License
+
+  Name       : Regeneracy
+  Description: A two-column, fixed-width design with dark color scheme.
+  Version    : 1.0
+  Released   : 20100529
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "", :name => "keywords"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}/
+    %title tenisowo
+    //%link{:href => "style.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+    = stylesheet_link_tag :all
+    = javascript_include_tag :defaults
+
+    = csrf_meta_tag
+  %body
+    #wrapper
+      #header-wrapper
+        #header
+          #logo
+            %h1
+              %a{:href => "/"} Tennis
+            /
+              %p
+                design by
+                %a{:href => "http://www.freecsstemplates.org/"} Free CSS Templates
+            %p
+              Find an opponant
+          #menu
+            %ul
+              %li{:class => @home_controller}
+                %a{:href => "/"} Home
+
+              %li{:class => @players_controller}
+                = link_to "Player", players_path
+
+              %li{:class => @matches_controller}
+                = link_to "Match", matches_path
+
+              %li{:class => @match_requests_controller}
+                = link_to "Match Request", match_requests_path
+
+              %li{:class => @profiles_controller}
+                = link_to "Profile", profile_path
+
+              %li
+                = link_to "log out", destroy_user_session_path
+      / end #header
+      #page
+        #page-bgtop
+          #page-bgbtm
+            #content
+              = render :partial => "shared/flash_errors"
+
+              =yield
+
+              %div{:style => "clear: both;"} &nbsp;
+            / end #content
+            #sidebar
+              %ul
+                = yield :extra
+                %li
+                  %h2 Last Match
+                  %ul
+                    - @last_matches.each do |m|
+                      %li
+                        =link_to m.opponent(@profile).nick, match_path(m)
+
+                    %li
+                      =link_to "more", matches_path
+                %li
+                  %h2 Latest polls
+                  %ul
+                    - @last_requests.each do |m|
+                      %li
+                        =link_to m.opponent(@profile).nick, match_request_path(m)
+
+                    %li
+                      =link_to "more", match_requests_path
+            / end #sidebar
+            %div{:style => "clear: both;"} &nbsp;
+      / end #page
+      .push

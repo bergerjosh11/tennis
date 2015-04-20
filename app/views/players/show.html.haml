@@ -1,0 +1,66 @@
+= render :partial => "shared/object_errors", :locals => {:object => @match_request}
+.post
+  %h2.title= @player.nick
+  %p
+  .entry
+    %table.bordered
+      %tr
+        %th Name
+        %th Surname
+        %th Email
+        %th State
+        %th City
+        %th NTRP
+      %tr
+        %td
+          - if @player.hide_name
+            Ukryte
+          - else
+            = @player.first_name
+        %td
+          - if @player.hide_name
+            Ukryte
+          - else
+            = @player.last_name
+        %td= @player.email
+        %td= @player.state
+        %td= @player.city
+        %td= @player.ntrp
+
+.post
+  %h2.title Ratings
+  %p
+  .entry
+    %table.bordered
+      %tr
+        %th Positive
+        %th Neutral
+        %th Negative
+        %th Percent Positive
+      %tr
+        %td= @player.owned_rates.positive.count
+        %td= @player.owned_rates.neutral.count
+        %td= @player.owned_rates.negative.count
+        %td
+          - if @player.owned_rates.all.count == 0
+            No Ratings
+          - else
+            = (@player.owned_rates.positive.count / @player.owned_rates.all.count) * 100
+    %p
+    %h3 More
+
+.post
+  %h2.title Challenge this player to a match
+  %p
+  .entry
+    - form_for [@player, @match_request], :url => player_match_requests_path(@player) do |f|
+      %table
+        %tr
+          %th Messege:
+          %td
+            = f.text_area :description
+        %tr
+          %td
+          %td
+            = f.submit "Send"
+
